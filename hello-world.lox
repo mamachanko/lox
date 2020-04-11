@@ -9,3 +9,15 @@ print "Here's some text:";
 print text;
 
 print "Good bye, friends! 👋"
+
+class Element {
+
+    getValue() {
+        return 123.45;
+    }
+}
+
+fun random() {
+    return Element().getValue();
+}
+

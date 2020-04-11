@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Lox {
+
+    private static boolean hadError = false;
 
     public static void main(String[] args) throws IOException {
         if (args.length > 1) {
@@ -25,6 +26,8 @@ public class Lox {
     private static void runFile(String path) throws IOException {
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
+
+        if (hadError) System.exit(65);
     }
 
     private static void runPrompt() throws IOException {
@@ -34,6 +37,7 @@ public class Lox {
         while (true) {
             System.out.print("> ");
             run(reader.readLine());
+            hadError = false;
         }
     }
 
@@ -46,34 +50,13 @@ public class Lox {
         }
     }
 
-}
-
-class Scanner {
-
-    private String source;
-
-    public Scanner(String source) {
-        this.source = source;
+    static void error(int line, String message) {
+        report(line, "", message);
     }
 
-    public List<Token> scanTokens() {
-        List<Token> tokens = new ArrayList<>();
-        for (String s : source.split(" ")) {
-            tokens.add(new Token(s));
-        }
-        return tokens;
-    }
-}
-
-class Token {
-    private String s;
-
-    public Token(String s) {
-        this.s = s;
+    private static void report(int line, String where, String message) {
+        System.err.println("[line " + line + "] Error" + where + ": " + message);
+        hadError = true;
     }
 
-    @Override
-    public String toString() {
-        return "Token{" + s + "}";
-    }
 }
