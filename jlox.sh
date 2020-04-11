@@ -4,12 +4,10 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-javac \
-    -d ./out \
-    src/io/github/mamachanko/Lox.java
+./build.sh
 
 java \
     -Dfile.encoding=UTF-8 \
     -classpath ./out \
-    io.github.mamachanko.Lox
-
+    io.github.mamachanko.Lox \
+    "$@"
