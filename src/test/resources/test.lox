@@ -1,0 +1,23 @@
+print "Hello, world. This is lox. 🍣";
+
+var number = 123.34;
+print "Here's a number:";
+print number;
+
+var text = "well well well";
+print "Here's some text:";
+print text;
+
+print "Good bye, friends! 👋"
+
+class Element {
+
+    getValue() {
+        return 123.45;
+    }
+}
+
+fun random() {
+    return Element().getValue();
+}
+

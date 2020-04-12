@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    jcenter()
+}
+
+targetCompatibility = JavaVersion.VERSION_14
+sourceCompatibility = JavaVersion.VERSION_14
+
+jar {
+    archiveFileName = "jlox.jar"
+
+    manifest {
+        attributes 'Main-Class': 'io.github.mamachanko.lox.Lox'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+}
+
+application {
+    mainClassName = 'io.github.mamachanko.lox.Lox'
+}
+
+test {
+    useJUnitPlatform()
+}
