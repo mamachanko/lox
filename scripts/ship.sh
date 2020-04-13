@@ -26,7 +26,7 @@ build() {
   tempDir=$(mktemp -d)
   generate_ast "$tempDir"
   cat "$tempDir/Expr.java"
-  
+
   jlox hello-world.lox
 }
 

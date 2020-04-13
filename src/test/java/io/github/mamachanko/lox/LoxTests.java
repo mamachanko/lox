@@ -4,14 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 class LoxTests {
 
-    private File testSourceFile = new File(getClass().getClassLoader().getResource("test.lox").getPath());
-
     @Test
-    void itLox() throws IOException {
-        Lox.main(new String[]{testSourceFile.getAbsolutePath()});
+    void expression() throws IOException {
+        Lox.main(new String[]{getResourcePath("expression-test.lox")});
+    }
+
+    private String getResourcePath(String fileName) {
+        URL resource = getClass().getClassLoader().getResource(fileName);
+        return new File(resource.getPath()).getAbsolutePath();
     }
 
 }

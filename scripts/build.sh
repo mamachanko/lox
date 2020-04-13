@@ -6,4 +6,4 @@ cd "$(dirname "$0")"
 
 cd ..
 
-./gradlew clean build
+./gradlew clean build --no-daemon --info
