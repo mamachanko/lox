@@ -30,3 +30,15 @@ application {
 test {
     useJUnitPlatform()
 }
+
+task buildTool(type: Jar) {
+    from(sourceSets.main.output) {
+        archiveFileName = "generate_ast.jar"
+
+        manifest {
+            attributes 'Main-Class': 'io.github.mamachanko.tool.GenerateAst'
+        }
+    }
+}
+
+build.finalizedBy(buildTool)
