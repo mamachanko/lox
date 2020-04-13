@@ -22,6 +22,11 @@ assert_clean() {
 
 build() {
   ./scripts/build.sh
+
+  tempDir=$(mktemp -d)
+  generate_ast "$tempDir"
+  cat "$tempDir/Expr.java"
+  
   jlox hello-world.lox
 }
 
